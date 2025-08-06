@@ -1,9 +1,23 @@
 import React from 'react';
+import { Box } from '@mui/material';
 
 const Card = ({ children }) => (
-  <div style={{background: '#fff', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)', padding: '2rem', maxWidth: '400px', margin: '2rem auto'}}>
+  <Box sx={{
+    background: 'rgba(255,255,255,0.95)',
+    borderRadius: 6,
+    boxShadow: '0 4px 24px rgba(25,118,210,0.15)',
+    padding: { xs: 2, md: 4 },
+    maxWidth: 480,
+    margin: '2rem auto',
+    minHeight: 200,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transition: 'box-shadow 0.3s',
+  }}>
     {children}
-  </div>
+  </Box>
 );
 
 export default Card;

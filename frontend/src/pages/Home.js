@@ -3,18 +3,19 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Card from '../components/Card';
 import FileUploadForm from '../components/FileUploadForm';
+import { Box } from '@mui/material';
 
 const Home = () => (
-  <div style={{minHeight: '100vh', background: '#f7fafc', paddingBottom: '2.5rem'}}>
+  <Box sx={{ minHeight: '100vh', pb: 8, display: 'flex', flexDirection: 'column' }}>
     <Header />
-    <main style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '80vh'}}>
+    <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', px: 2 }}>
       <Card>
         <h2 style={{marginBottom: '1rem', textAlign: 'center'}}>Sube tu archivo</h2>
         <FileUploadForm />
       </Card>
-    </main>
+    </Box>
     <Footer />
-  </div>
+  </Box>
 );
 
 export default Home;
