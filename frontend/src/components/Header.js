@@ -55,33 +55,52 @@ const Header = () => {
   return (
     <AppBar position="static" sx={{
       bgcolor: 'transparent',
-      background: mode === 'light'
-        ? 'linear-gradient(90deg, #1976d2 0%, #00bcd4 100%)'
-        : 'linear-gradient(90deg, #1a237e 0%, #3949ab 100%)',
-      boxShadow: 'none',
-      borderRadius: 4,
-      mt: 2,
-      mx: 2,
+      background: 'rgba(10,15,30,0.95)',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.22)',
+      borderRadius: 18,
+      mt: 32,
+      mx: 'auto',
+      width: { xs: '99%', md: '96%' },
+      maxWidth: 1300,
+      left: 0,
+      right: 0,
+      zIndex: 10,
+      border: '1px solid var(--border-color)',
+      backdropFilter: 'blur(8px)',
+      minHeight: 64,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     }}>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', borderRadius: 4 }}>
+      <Toolbar sx={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 3fr 1fr',
+        alignItems: 'center',
+        borderRadius: 18,
+        minHeight: 64,
+        px: { xs: 1, md: 3 },
+        width: '100%',
+      }}>
         {/* Logo */}
-        <Typography variant="h5" sx={{ fontWeight: 'bold', color: '#fff', letterSpacing: 2, mr: 2 }}>
-          SmartDocX
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'var(--primary-light)', letterSpacing: 1 }}>
+            SmartDocX
+          </Typography>
+        </Box>
         {/* Menú principal centrado */}
-        <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
           <MainMenu />
         </Box>
-        {/* Derecha: Botones y modo oscuro */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, ml: 2 }}>
-          <Button color="inherit" onClick={() => setOpenRegister(true)} sx={{ fontWeight: 'bold', bgcolor: '#fff', color: '#1976d2', borderRadius: 3, px: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', '&:hover': { bgcolor: '#e3f2fd' } }}>
+        {/* Derecha: Botones y modo oscuro en una línea */}
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1 }}>
+          <Button color="inherit" onClick={() => setOpenRegister(true)} sx={{ fontWeight: 'bold', bgcolor: 'var(--primary-color)', color: '#fff', borderRadius: 6, px: 2, boxShadow: 'var(--shadow-sm)', minWidth: 80, height: 36, fontSize: '0.95rem', '&:hover': { bgcolor: 'var(--primary-dark)' } }}>
             Registrarse
           </Button>
-          <Button color="inherit" onClick={() => setOpenLogin(true)} sx={{ fontWeight: 'bold', bgcolor: '#fff', color: '#1976d2', borderRadius: 3, px: 2, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', '&:hover': { bgcolor: '#e3f2fd' } }}>
+          <Button color="inherit" onClick={() => setOpenLogin(true)} sx={{ fontWeight: 'bold', bgcolor: 'var(--secondary-color)', color: '#fff', borderRadius: 6, px: 2, boxShadow: 'var(--shadow-sm)', minWidth: 80, height: 36, fontSize: '0.95rem', '&:hover': { bgcolor: 'var(--secondary-dark)' } }}>
             Login
           </Button>
-          <IconButton color="inherit" onClick={toggleMode}>
-            {mode === 'dark' ? <Brightness7Icon sx={{ color: '#fff' }} /> : <Brightness4Icon sx={{ color: '#fff' }} />}
+          <IconButton color="inherit" onClick={toggleMode} sx={{ ml: 1, height: 36 }}>
+            {mode === 'dark' ? <Brightness7Icon sx={{ color: 'var(--accent-color)' }} /> : <Brightness4Icon sx={{ color: 'var(--accent-color)' }} />}
           </IconButton>
         </Box>
       </Toolbar>
@@ -95,17 +114,34 @@ const Header = () => {
       </Modal>
       {/* Modal de login */}
       <Modal open={openLogin} onClose={() => setOpenLogin(false)}>
-        <Box sx={modalStyle}>
-          <Typography variant="h6" sx={{ mb: 2 }}>Login</Typography>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <Button variant="outlined" startIcon={<GoogleIcon />} sx={{ mb: 1 }}>
-              Iniciar sesión con Google
-            </Button>
-            <Button variant="outlined" startIcon={<SmartphoneIcon />} sx={{ mb: 1 }}>
-              Iniciar sesión con celular
+        <Box sx={{ ...modalStyle, bgcolor: 'var(--bg-card)', color: 'var(--text-primary)', borderRadius: 8, boxShadow: 'var(--shadow-lg)', minWidth: 350 }}>
+          <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold', color: 'var(--primary-light)' }}>Login</Typography>
+          <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <input type="email" placeholder="Correo electrónico" required style={{
+              padding: '0.75rem 1rem',
+              borderRadius: '8px',
+              border: '1.5px solid var(--border-light)',
+              background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+              fontSize: '1rem',
+              outline: 'none',
+              marginBottom: '0.5rem',
+            }} />
+            <input type="password" placeholder="Contraseña" required style={{
+              padding: '0.75rem 1rem',
+              borderRadius: '8px',
+              border: '1.5px solid var(--border-light)',
+              background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+              fontSize: '1rem',
+              outline: 'none',
+              marginBottom: '0.5rem',
+            }} />
+            <Button type="submit" variant="contained" sx={{ bgcolor: 'var(--primary-color)', color: '#fff', borderRadius: 8, fontWeight: 'bold', py: 1, fontSize: '1rem', boxShadow: 'var(--shadow-sm)', '&:hover': { bgcolor: 'var(--primary-dark)' } }}>
+              Iniciar sesión
             </Button>
           </Box>
-          <Button onClick={() => setOpenLogin(false)} variant="contained" color="primary" sx={{ mt: 2 }}>Cerrar</Button>
+          <Button onClick={() => setOpenLogin(false)} variant="text" sx={{ mt: 2, color: 'var(--accent-color)', fontWeight: 'bold' }}>Cerrar</Button>
         </Box>
       </Modal>
     </AppBar>

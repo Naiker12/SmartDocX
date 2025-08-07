@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeModeProvider, useThemeMode } from './context/ThemeContext';
 import Home from './pages/Home';
+import './styles/theme.css';
 
 const AppContent = () => {
   const { mode } = useThemeMode();

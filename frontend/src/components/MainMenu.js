@@ -4,22 +4,19 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const menuItems = [
   { label: 'Inicio', link: '/' },
-  { label: 'Visualización Excel', link: '/excel' },
+  { label: 'Visualización', link: '/excel' },
   { label: 'Convertir', submenu: [
     { label: 'PDF a Excel', link: '/convert/pdf-excel' },
     { label: 'Word a Excel', link: '/convert/word-excel' },
     { label: 'ZIP a Excel', link: '/convert/zip-excel' },
     { label: 'Imagen a Excel', link: '/convert/img-excel' },
   ]},
-  { label: 'OCR', link: '/ocr' },
   { label: 'Compresión', submenu: [
     { label: 'Comprimir PDF', link: '/compress/pdf' },
     { label: 'Comprimir Excel', link: '/compress/excel' },
     { label: 'Comprimir Imagen', link: '/compress/img' },
   ]},
   { label: 'Análisis', link: '/analysis' },
-  { label: 'Historial', link: '/history' },
-  { label: 'Contactar', link: '/contact' },
 ];
 
 const MainMenu = () => {

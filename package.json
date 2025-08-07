@@ -8,5 +8,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@shadcn/ui": "^0.0.4",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.9.1"
+  }
 }
