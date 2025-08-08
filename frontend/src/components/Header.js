@@ -1,150 +1,223 @@
-import React, { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Modal from '@mui/material/Modal';
-import Box from '@mui/material/Box';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import GoogleIcon from '@mui/icons-material/Google';
-import SmartphoneIcon from '@mui/icons-material/Smartphone';
-import TableChartIcon from '@mui/icons-material/TableChart';
-import TransformIcon from '@mui/icons-material/Transform';
-import UnarchiveIcon from '@mui/icons-material/Unarchive';
-import CompressIcon from '@mui/icons-material/Compress';
-import TextFieldsIcon from '@mui/icons-material/TextFields';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import HistoryIcon from '@mui/icons-material/History';
-import CompareIcon from '@mui/icons-material/CompareArrows';
-import FolderSpecialIcon from '@mui/icons-material/FolderSpecial';
-import { useThemeMode } from '../context/ThemeContext';
-import MenuFeatures from './MenuFeatures';
-import MainMenu from './MainMenu';
-
-const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 4,
-  borderRadius: 2,
-  minWidth: 300,
-};
-
-const features = [
-  { label: 'Visualización Nativa de Excel', icon: <TableChartIcon />, color: '#1976d2' },
-  { label: 'Conversión Automática', icon: <TransformIcon />, color: '#00bcd4' },
-  { label: 'Descompresión Inteligente', icon: <UnarchiveIcon />, color: '#ff9800' },
-  { label: 'Compresión de Archivos', icon: <CompressIcon />, color: '#8bc34a' },
-  { label: 'OCR Avanzado', icon: <TextFieldsIcon />, color: '#e91e63' },
-  { label: 'Análisis de Datos', icon: <BarChartIcon />, color: '#9c27b0' },
-  { label: 'Historial de Versiones', icon: <HistoryIcon />, color: '#607d8b' },
-  { label: 'Comparación de Filas', icon: <CompareIcon />, color: '#f44336' },
-  { label: 'Estructura ZIP a Excel', icon: <FolderSpecialIcon />, color: '#3f51b5' },
-];
+import React from 'react';
+import AnimatedBackground from './AnimatedBackground';
 
 const Header = () => {
-  const [openRegister, setOpenRegister] = useState(false);
-  const [openLogin, setOpenLogin] = useState(false);
-  const { mode, toggleMode } = useThemeMode();
-
   return (
-    <AppBar position="static" sx={{
-      bgcolor: 'transparent',
-      background: 'rgba(10,15,30,0.95)',
-      boxShadow: '0 4px 16px rgba(0,0,0,0.22)',
-      borderRadius: 18,
-      mt: 32,
-      mx: 'auto',
-      width: { xs: '99%', md: '96%' },
-      maxWidth: 1300,
-      left: 0,
-      right: 0,
-      zIndex: 10,
-      border: '1px solid var(--border-color)',
-      backdropFilter: 'blur(8px)',
-      minHeight: 64,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-      <Toolbar sx={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 3fr 1fr',
-        alignItems: 'center',
-        borderRadius: 18,
-        minHeight: 64,
-        px: { xs: 1, md: 3 },
-        width: '100%',
+    <>
+      <AnimatedBackground />
+      
+      {/* Header Minimalista Flotante */}
+      <header style={{
+        position: 'fixed',
+        top: '24px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 1000,
+        width: 'max-content'
       }}>
-        {/* Logo */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'var(--primary-light)', letterSpacing: 1 }}>
+        <div style={{
+          background: 'rgba(0, 0, 0, 0.4)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '50px',
+          padding: '12px 24px',
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '32px'
+        }}>
+          
+          {/* Logo */}
+          <div style={{
+            color: 'white',
+            fontWeight: 600,
+            fontSize: '14px',
+            whiteSpace: 'nowrap',
+            background: 'linear-gradient(to right, #3b82f6, #14b8a6)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
             SmartDocX
-          </Typography>
-        </Box>
-        {/* Menú principal centrado */}
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1 }}>
-          <MainMenu />
-        </Box>
-        {/* Derecha: Botones y modo oscuro en una línea */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1 }}>
-          <Button color="inherit" onClick={() => setOpenRegister(true)} sx={{ fontWeight: 'bold', bgcolor: 'var(--primary-color)', color: '#fff', borderRadius: 6, px: 2, boxShadow: 'var(--shadow-sm)', minWidth: 80, height: 36, fontSize: '0.95rem', '&:hover': { bgcolor: 'var(--primary-dark)' } }}>
-            Registrarse
-          </Button>
-          <Button color="inherit" onClick={() => setOpenLogin(true)} sx={{ fontWeight: 'bold', bgcolor: 'var(--secondary-color)', color: '#fff', borderRadius: 6, px: 2, boxShadow: 'var(--shadow-sm)', minWidth: 80, height: 36, fontSize: '0.95rem', '&:hover': { bgcolor: 'var(--secondary-dark)' } }}>
-            Login
-          </Button>
-          <IconButton color="inherit" onClick={toggleMode} sx={{ ml: 1, height: 36 }}>
-            {mode === 'dark' ? <Brightness7Icon sx={{ color: 'var(--accent-color)' }} /> : <Brightness4Icon sx={{ color: 'var(--accent-color)' }} />}
-          </IconButton>
-        </Box>
-      </Toolbar>
-      {/* Modal de registro */}
-      <Modal open={openRegister} onClose={() => setOpenRegister(false)}>
-        <Box sx={modalStyle}>
-          <Typography variant="h6" sx={{ mb: 2 }}>Registro</Typography>
-          {/* Aquí va el formulario de registro */}
-          <Button onClick={() => setOpenRegister(false)} variant="contained" color="primary">Cerrar</Button>
-        </Box>
-      </Modal>
-      {/* Modal de login */}
-      <Modal open={openLogin} onClose={() => setOpenLogin(false)}>
-        <Box sx={{ ...modalStyle, bgcolor: 'var(--bg-card)', color: 'var(--text-primary)', borderRadius: 8, boxShadow: 'var(--shadow-lg)', minWidth: 350 }}>
-          <Typography variant="h6" sx={{ mb: 2, textAlign: 'center', fontWeight: 'bold', color: 'var(--primary-light)' }}>Login</Typography>
-          <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <input type="email" placeholder="Correo electrónico" required style={{
-              padding: '0.75rem 1rem',
-              borderRadius: '8px',
-              border: '1.5px solid var(--border-light)',
-              background: 'var(--bg-secondary)',
-              color: 'var(--text-primary)',
-              fontSize: '1rem',
-              outline: 'none',
-              marginBottom: '0.5rem',
-            }} />
-            <input type="password" placeholder="Contraseña" required style={{
-              padding: '0.75rem 1rem',
-              borderRadius: '8px',
-              border: '1.5px solid var(--border-light)',
-              background: 'var(--bg-secondary)',
-              color: 'var(--text-primary)',
-              fontSize: '1rem',
-              outline: 'none',
-              marginBottom: '0.5rem',
-            }} />
-            <Button type="submit" variant="contained" sx={{ bgcolor: 'var(--primary-color)', color: '#fff', borderRadius: 8, fontWeight: 'bold', py: 1, fontSize: '1rem', boxShadow: 'var(--shadow-sm)', '&:hover': { bgcolor: 'var(--primary-dark)' } }}>
+          </div>
+          
+          {/* Navigation */}
+          <nav style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '24px'
+          }}>
+            <a href="#" style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              transition: 'color 0.2s ease',
+              whiteSpace: 'nowrap'
+            }} 
+            onMouseEnter={(e) => e.target.style.color = 'white'}
+            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>
+              Inicio
+            </a>
+            <a href="#" style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              transition: 'color 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => e.target.style.color = 'white'}
+            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>
+              Documentos
+            </a>
+            <a href="#" style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              transition: 'color 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => e.target.style.color = 'white'}
+            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>
+              OCR
+            </a>
+            <a href="#" style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              transition: 'color 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => e.target.style.color = 'white'}
+            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>
+              Comprimir
+            </a>
+            <a href="#" style={{
+              color: 'rgba(255, 255, 255, 0.7)',
+              textDecoration: 'none',
+              fontSize: '14px',
+              transition: 'color 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => e.target.style.color = 'white'}
+            onMouseLeave={(e) => e.target.style.color = 'rgba(255, 255, 255, 0.7)'}>
+              Análisis
+            </a>
+          </nav>
+
+          {/* Theme Toggle */}
+          <div style={{
+            color: 'rgba(255, 255, 255, 0.7)',
+            fontSize: '14px',
+            whiteSpace: 'nowrap'
+          }}>
+            Dark/Life
+          </div>
+
+          {/* Buttons */}
+          <div style={{
+            display: 'flex',
+            gap: '12px'
+          }}>
+            <button style={{
+              padding: '8px 24px',
+              borderRadius: '25px',
+              fontSize: '14px',
+              fontWeight: 500,
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              background: 'rgba(255, 255, 255, 0.1)',
+              color: 'white',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.2)';
+              e.target.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+              e.target.style.transform = 'scale(1)';
+            }}>
               Iniciar sesión
-            </Button>
-          </Box>
-          <Button onClick={() => setOpenLogin(false)} variant="text" sx={{ mt: 2, color: 'var(--accent-color)', fontWeight: 'bold' }}>Cerrar</Button>
-        </Box>
-      </Modal>
-    </AppBar>
+            </button>
+            
+            <button style={{
+              padding: '8px 24px',
+              borderRadius: '25px',
+              fontSize: '14px',
+              fontWeight: 600,
+              border: 'none',
+              background: 'white',
+              color: 'black',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              whiteSpace: 'nowrap'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.9)';
+              e.target.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'white';
+              e.target.style.transform = 'scale(1)';
+            }}>
+              Registrarse
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Background Effects */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: -1,
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: '25%',
+          left: '25%',
+          width: '200px',
+          height: '200px',
+          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent)',
+          borderRadius: '50%',
+          filter: 'blur(60px)',
+          opacity: 0.3,
+          animation: 'float 6s ease-in-out infinite'
+        }}></div>
+        
+        <div style={{
+          position: 'absolute',
+          bottom: '25%',
+          right: '25%',
+          width: '300px',
+          height: '300px',
+          background: 'radial-gradient(circle, rgba(147, 51, 234, 0.1), transparent)',
+          borderRadius: '50%',
+          filter: 'blur(60px)',
+          opacity: 0.3,
+          animation: 'float 6s ease-in-out infinite',
+          animationDelay: '2s'
+        }}></div>
+      </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0) scale(1);
+          }
+          50% {
+            transform: translateY(-20px) scale(1.1);
+          }
+        }
+      `}</style>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader' , 'postcss-loader'],
       },
     ],
   },
@@ -28,6 +28,6 @@ module.exports = {
     open: true,
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js' , '.jsx'],
   },
 };
